@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLog Pro - Jeolojik Dokümantasyon Platformu</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Özel Stiller ve Animasyonlar -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Mühendislik / Milimetrik Kağıt Izgara Deseni */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Yavaş ve pürüzsüz giriş animasyonları */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Kart Hover Efektleri için ekstra yumuşaklık */
+        .app-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
+        }
+        
+        .icon-wrapper {
+            transition: transform 0.4s ease;
+        }
+        .app-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Gradyan metin efekti */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #60a5fa, #a78bfa); /* blue-400 to violet-400 */
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen relative overflow-x-hidden">
+
+    <!-- Navbar (Transparan & Şık) -->
+    <nav class="absolute top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-3 fade-in-up">
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-2.5 rounded-xl shadow-lg shadow-blue-900/20 text-white flex items-center justify-center border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <path d="M12 2v13" />
+                    <path d="M9 15h6l-3 5-3-5z" fill="currentColor"/>
+                    <path d="M3 9h18" />
+                    <path d="M4 14h4" />
+                    <path d="M16 14h4" />
+                    <path d="M5 19h3" />
+                    <path d="M16 19h3" />
+                </svg>
+            </div>
+            <div>
+                <span class="text-xl md:text-2xl font-bold text-white tracking-tight">GeoLog Pro</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Bölümü (Koyu Tema, Mühendislik Izgarası) -->
+    <header class="relative bg-slate-900 pt-32 pb-48 md:pt-40 md:pb-56 overflow-hidden flex flex-col items-center justify-center text-center">
+        <!-- Arka Plan Grid ve Glow Efektleri -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <!-- Hero İçerik -->
+        <div class="relative z-10 max-w-4xl px-4 mx-auto">
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight fade-in-up delay-200">
+                <span class="text-gradient">Hidrojeolojik</span> Dokümantasyon Platformu
+            </h1>
+            
+            <p class="text-lg md:text-xl text-slate-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed fade-in-up delay-300">
+                Kuyu kütüğü oluşturma, litolojik kesit modelleme ve sabit seviyeli düşüm deneyi analizlerinizi tek bir merkezden, profesyonel standartlarda yönetin.
+            </p>
+            
+            <div class="flex items-center justify-center gap-4 fade-in-up delay-400">
+                <a href="#apps" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-bold text-base transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 border border-blue-500">
+                    Uygulamalara Göz At <i class="fa-solid fa-arrow-down ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik / Uygulama Kartları -->
+    <main id="apps" class="flex-grow max-w-7xl mx-auto px-4 md:px-8 -mt-24 md:-mt-32 relative z-20 pb-24 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            
+            <!-- 1. Kuyu Logu Editörü Kartı -->
+            <div class="app-card bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-slate-200/60 flex flex-col h-full relative overflow-hidden group">
+                <!-- Arka plan ince detayı -->
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-slate-50 rounded-full blur-3xl opacity-50 group-hover:bg-slate-100 transition-colors"></div>
+                
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="icon-wrapper bg-slate-900 w-16 h-16 rounded-2xl flex items-center justify-center shadow-md border border-slate-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-white">
+                                <path d="M12 2v13" />
+                                <path d="M9 15h6l-3 5-3-5z" fill="currentColor"/>
+                                <path d="M3 9h18" />
+                                <path d="M4 14h4" />
+                                <path d="M16 14h4" />
+                                <path d="M5 19h3" />
+                                <path d="M16 19h3" />
+                            </svg>
+                        </div>
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200">
+                            v2.0 Sürümü
+                        </span>
+                    </div>
+                    
+                    <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight mb-3">Kuyu Logu Editörü</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed font-medium">
+                        Litolojik birimleri, filtre tasarımlarını ve teknik kuyu teçhizlerini parametrik olarak çizin. Mükemmel hizalanmış PDF çıktıları alın.
+                    </p>
+                    
+                    <!-- Özellikler Listesi -->
+                    <ul class="space-y-3 mb-10 flex-grow">
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Detaylı litolojik katman tanımlama ve görselleştirme</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Otomatik teçhiz ve filtre tasarımı çizimi</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Canlı harita desteği (ESRI & OSM) ve UTM dönüşümü</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Milimetrik PDF çıktısı ve QR Kod entegrasyonu</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- LÜTFEN DOSYA ADINI KENDİ KAYDETTİĞİNİZ AD İLE DEĞİŞTİRİN -->
+                    <a href="kuyu_logu.html" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 transition-all group-hover:shadow-lg mt-auto">
+                        Editöre Giriş Yap <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Düşüm Zaman Editörü Kartı -->
+            <div class="app-card bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-slate-200/60 flex flex-col h-full relative overflow-hidden group">
+                <!-- Arka plan ince detayı -->
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 group-hover:bg-blue-100 transition-colors"></div>
+                
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="icon-wrapper bg-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center shadow-md shadow-blue-500/20 border border-blue-500">
+                            <i class="fa-solid fa-chart-line text-2xl text-white"></i>
+                        </div>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full border border-indigo-200">
+                            Akifer Analizi
+                        </span>
+                    </div>
+                    
+                    <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight mb-3">Düşüm - Zaman Analizi</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed font-medium">
+                        Sabit seviyeli düşüm deneylerini yarı-logaritmik grafik üzerinde analiz edin. İletilebilirlik ve hidrolik iletkenlik (T ve K) değerlerini anında hesaplayın.
+                    </p>
+                    
+                    <!-- Özellikler Listesi -->
+                    <ul class="space-y-3 mb-10 flex-grow">
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Dinamik Yarı-Logaritmik düşüm grafiği oluşturma</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Otomatik İletilebilirlik (T) ve Hidrolik İletkenlik (K) hesabı</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Özelleştirilebilir zaman periyotları (t1 ve t2 analizi)</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                            <i class="fa-solid fa-check-circle text-emerald-500 mt-0.5"></i>
+                            <span>Formülleri içeren akademik formatta PDF raporu alma</span>
+                        </li>
+                    </ul>
+                    
+                    <!-- LÜTFEN DOSYA ADINI KENDİ KAYDETTİĞİNİZ AD İLE DEĞİŞTİRİN -->
+                    <a href="dusum_zaman.html" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2 transition-all group-hover:shadow-lg shadow-blue-500/25 mt-auto">
+                        Analize Başla <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <div class="bg-slate-800 p-1.5 rounded text-white flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                        <path d="M12 2v13" />
+                        <path d="M9 15h6l-3 5-3-5z" fill="currentColor"/>
+                        <path d="M3 9h18" />
+                        <path d="M4 14h4" />
+                        <path d="M16 14h4" />
+                        <path d="M5 19h3" />
+                        <path d="M16 19h3" />
+                    </svg>
+                </div>
+                <span class="font-bold text-slate-800 text-sm">GeoLog Pro</span>
+            </div>
+            <p class="text-slate-500 text-sm">
+                &copy; 2026 | Emre Mermutlu | Tüm hakları saklıdır
+            </p>
+        </div>
+    </footer>
+
+    <!-- Demo Önizleme İçin Yönlendirme Kontrolü (Sadece bu canlı test ortamı için) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href$=".html"]');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const url = link.getAttribute('href');
+                    // Geliştirici Ortamı veya Dosyaların aynı klasörde olmadığı durumlar için küçük bir uyarı
+                    if (window.location.protocol === 'about:' || window.location.hostname === 'preview') {
+                        e.preventDefault();
+                        alert(`Yönlendirme simülasyonu: Normalde bilgisayarınızda '${url}' adlı dosyayı açacaktır.\n\nLütfen bu index.html dosyasını, "${url}" dosyası ile aynı klasör içine koyun.`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
